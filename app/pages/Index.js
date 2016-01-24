@@ -1,9 +1,27 @@
 'use strict';
 
-import React from 'react';
+const _ = require('lodash');
+const React = require('react');
+const Immutable = require('immutable');
+// const ImmutablePropTypes = require('react-immutable-proptypes');
+const {connectToStores} = require('fluxible-addons-react');
+const UserAction = require('../actions/UserAction.js');
 
 let IndexPage = React.createClass({
   displayName: 'IndexPage',
+
+  propTypes:{
+    user: React.PropTypes.any
+  },
+
+  contextTypes: {
+    getStore: React.PropTypes.func.isRequired,
+    executeAction: React.PropTypes.func.isRequired
+  },
+
+  componentDidMount() {
+    console.log(this.props.user);
+  },
 
   render() {
     return (
@@ -15,4 +33,10 @@ let IndexPage = React.createClass({
   }
 })
 
+
+IndexPage = connectToStores(IndexPage, ['UserStore'], context => {
+  return {
+    user: context.getStore('UserStore').getUser()
+  };
+});
 export default IndexPage;
