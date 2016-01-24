@@ -3,7 +3,7 @@
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 import { createElementWithContext } from 'fluxible-addons-react';
-import app from './app';
+import app from '../app.js';
 
 const debugClient = debug('hiyakake');
 const dehydratedState = window.App; // Sent from the server
@@ -18,16 +18,16 @@ debugClient('rehydrating app');
 
 // pass in the dehydrated server state from server.js
 app.rehydrate(dehydratedState, (err, context) => {
-    if (err) {
-        throw err;
-    }
-    window.context = context;
-    const mountNode = document.getElementById('app');
+  if (err) {
+    throw err;
+  }
+  window.context = context;
+  const mountNode = document.getElementById('app');
 
-    debugClient('React Rendering');
-    ReactDOM.render(
-        createElementWithContext(context),
-        mountNode,
-        () => debugClient('React Rendered')
-    );
+  debugClient('React Rendering');
+  ReactDOM.render(
+      createElementWithContext(context),
+      mountNode,
+      () => debugClient('React Rendered')
+      );
 });

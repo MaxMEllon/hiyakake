@@ -5,7 +5,7 @@ import RouteStore from './share/stores/RouteStore';
 
 // create new fluxible instance
 const app = new Fluxible({
-    component: Application
+  component: Application
 });
 
 // register stores
