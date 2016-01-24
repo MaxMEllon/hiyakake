@@ -10,7 +10,7 @@ import debugLib from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import app from '../app.js';
-import HtmlComponent from '../share/components/Html.js';
+import HtmlComponent from '../app/components/Html.js';
 import { createElementWithContext } from 'fluxible-addons-react';
 const env = process.env.NODE_ENV;
 

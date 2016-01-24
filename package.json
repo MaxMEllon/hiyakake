@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack & webpack --config webpack.config.production.js",
     "dev": "node webpack-dev-server.js",
-    "lint": "./node_modules/.bin/eslint ./*.js ./**/*.js ./share/**/*.js",
+    "lint": "./node_modules/.bin/eslint ./*.js ./**/*.js ./app/**/*.js",
     "start": "node ./bin/start.js"
   },
   "dependencies": {

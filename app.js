@@ -1,9 +1,9 @@
 'use strict';
 
 import Fluxible from 'fluxible';
-import Application from './share/components/Application.js';
-import ApplicationStore from './share/stores/ApplicationStore.js';
-import RouteStore from './share/stores/RouteStore.js';
+import Application from './app/components/Application.js';
+import ApplicationStore from './app/stores/ApplicationStore.js';
+import RouteStore from './app/stores/RouteStore.js';
 
 // create new fluxible instance
 const app = new Fluxible({
