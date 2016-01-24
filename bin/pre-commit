@@ -1,0 +1,35 @@
+#!/bin/sh
+
+files=$(git diff --cached --name-only --diff-filter=ACM)
+javascripts=$(echo "$files" | grep -e ".js$")
+
+warn=false
+pass=true
+
+if [ "$javascripts" != "" ]; then
+  for javascript in ${javascripts}; do
+    result=$(./node_modules/.bin/eslint ${javascript} -f compact)
+    if [ "$(echo $result | grep Error)" = "" ]; then
+      if [ "$(echo $result | grep Warning)" = "" ]; then
+        echo "\t\033[32m✓ [eslint] ${javascript}\033[0m"
+      else
+        warn=true
+        echo "\t\033[33m⚠︎︎ [eslint] ${javascript}\033[0m"
+      fi
+    else
+      echo "\t\033[31m✗ [eslint] ${javascript}\033[0m"
+      pass=false
+    fi
+  done
+fi
+
+if ! $pass; then
+  echo "\n\033[31m✗ \033[0m\n"
+  exit 1
+elif $warn; then
+  echo "\n\033[33m⚠︎ \033[0m\n"
+  exit 0
+else
+  echo "\n\033[32m✓ \033[0m\n"
+  exit 0
+fi
