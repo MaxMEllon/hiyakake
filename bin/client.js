@@ -1,4 +1,4 @@
-/*global document, window */
+'use strict';
 
 import ReactDOM from 'react-dom';
 import debug from 'debug';
@@ -26,8 +26,8 @@ app.rehydrate(dehydratedState, (err, context) => {
 
   debugClient('React Rendering');
   ReactDOM.render(
-      createElementWithContext(context),
-      mountNode,
-      () => debugClient('React Rendered')
-      );
+    createElementWithContext(context),
+    mountNode,
+    () => debugClient('React Rendered')
+  );
 });

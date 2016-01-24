@@ -1,23 +1,18 @@
 'use strict';
 
 import React from 'react';
-import Nav from './Nav';
+import Nav from './Nav.js';
 import ApplicationStore from '../stores/ApplicationStore.js';
-import { connectToStores, provideContext } from 'fluxible-addons-react';
-import { handleHistory } from 'fluxible-router';
+import {connectToStores} from 'fluxible-addons-react';
 import pages from '../../configs/routes.js';
 
-class Application extends React.Component {
-  render() {
-    var Handler = this.props.currentRoute.get('handler');
+let Application = React.createClass({
+  displayName: 'Application',
 
-    return (
-      <div>
-        <Nav currentRoute={this.props.currentRoute} links={pages} />
-        <Handler />
-      </div>
-    );
-  }
+  propTypes: {
+    currentRoute: React.PropTypes.any,
+    pageTitle: React.PropTypes.string
+  },
 
   componentDidUpdate(prevProps, prevState) {
     const newProps = this.props;
@@ -25,16 +20,25 @@ class Application extends React.Component {
       return;
     }
     document.title = newProps.pageTitle;
-  }
-}
+  },
 
-export default provideContext(handleHistory(connectToStores(
-  Application,
-  [ApplicationStore],
-  function (context, props) {
-    var appStore = context.getStore(ApplicationStore);
-    return {
-      pageTitle: appStore.getPageTitle()
-    };
+  render() {
+    var Handler = this.props.currentRoute.get('handler');
+    return (
+      <div>
+        <Nav currentRoute={this.props.currentRoute} links={pages} />
+        <Handler />
+      </div>
+    );
   }
-)));
+});
+
+Application = connectToStores(Application, [ApplicationStore], (context) => {
+  let appStore = context.getStore(ApplicationStore);
+  return {
+    pageTitle: context.getStore(ApplicationStore).getPageTitle(),
+    currentRoute: context.getStore('RouteStore').getCurrentRoute()
+  };
+});
+
+export default Application;

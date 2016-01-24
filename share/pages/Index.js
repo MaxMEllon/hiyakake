@@ -2,15 +2,17 @@
 
 import React from 'react';
 
-class Home extends React.Component {
+let IndexPage = React.createClass({
+  displayName: 'IndexPage',
+
   render() {
     return (
       <div>
-        <h2>Home</h2>
+        <h2>Index</h2>
         <p>Welcome to the site!</p>
       </div>
     );
   }
-}
+})
 
-export default Home;
+export default IndexPage;

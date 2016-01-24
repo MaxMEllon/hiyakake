@@ -1,9 +1,4 @@
-/**
- * This leverages Express to create and run the http server.
- * A Fluxible context is created and executes the navigateAction
- * based on the URL. Once completed, the store state is dehydrated
- * and the application is rendered via React.
- */
+'use strict';
 
 import express from 'express';
 import compression from 'compression';

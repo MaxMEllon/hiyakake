@@ -1,7 +1,24 @@
-import React from 'react';
-import { NavLink } from 'fluxible-router';
+'use strict';
 
-class Nav extends React.Component {
+import React from 'react';
+import {NavLink} from 'fluxible-router';
+
+let Nav = React.createClass({
+  displayName: 'Nav',
+
+  propTypes: {
+    selected: React.PropTypes.any,
+    currentRoute: React.PropTypes.any,
+    links: React.PropTypes.object.isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      selected: null,
+      links: {}
+    };
+  },
+
   render() {
     const selected = this.props.currentRoute;
     const links = this.props.links;
@@ -22,15 +39,11 @@ class Nav extends React.Component {
     });
 
     return (
-      <ul className="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul className='pure-menu pure-menu-open pure-menu-horizontal'>
         {linkHTML}
       </ul>
     );
   }
-}
-Nav.defaultProps = {
-  selected: null,
-  links: {}
-};
+});
 
 export default Nav;

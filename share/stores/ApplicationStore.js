@@ -1,3 +1,5 @@
+'use strict';
+
 import BaseStore from 'fluxible/addons/BaseStore';
 import RouteStore from './RouteStore';
 
@@ -33,6 +35,7 @@ class ApplicationStore extends BaseStore {
 }
 
 ApplicationStore.storeName = 'ApplicationStore';
+
 ApplicationStore.handlers = {
   'NAVIGATE_SUCCESS': 'handlePageTitle'
 };
