@@ -12,7 +12,7 @@ export default {
     handler: require('../app/views/Index.js'),
   },
   user: {
-    path: '/user/',
+    path: '/user',
     method: 'get',
     page: 'user',
     title: 'User',

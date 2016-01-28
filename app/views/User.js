@@ -14,22 +14,12 @@ let UserPage = React.createClass({
     user: React.PropTypes.any,
   },
 
-  getInitialState() {
-    return {
-      visible: false
-    };
-  },
-
   contextTypes: {
     getStore: React.PropTypes.func.isRequired,
     executeAction: React.PropTypes.func.isRequired
   },
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    if (!nextProps.user === null) {
-      this.setState({visible: true});
-    }
   },
 
   componentDidMount() {
@@ -39,23 +29,22 @@ let UserPage = React.createClass({
   },
 
   renderUserInfo() {
-    if (this.state.visible === true) {
-      return (
-        <div>
-          <h1>
-            {this.props.user.name}
-          </h1>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h1>
-            Loading...
-          </h1>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <h1>
+          {this.props.user.get('login')}
+        </h1>
+        <hr />
+        <ul>
+          <li>
+            {this.props.user.get('name')}
+          </li>
+          <li>
+            {this.props.user.get('company')}
+          </li>
+        </ul>
+      </div>
+    );
   },
 
   render() {

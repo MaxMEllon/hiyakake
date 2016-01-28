@@ -23,6 +23,7 @@ let IndexPage = React.createClass({
   },
 
   render() {
+    console.log('+++> render:Index');
     return (
       <div>
         <h2>Index</h2>
