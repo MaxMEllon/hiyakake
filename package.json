@@ -27,7 +27,8 @@
     "react-dom": "^0.14.6",
     "react-immutable-proptypes": "^1.5.1",
     "serialize-javascript": "^1.1.2",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",

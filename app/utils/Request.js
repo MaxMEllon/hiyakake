@@ -15,6 +15,7 @@ module.exports = (method, path, body) => {
     });
     req.end((reason, res) => {
       let statusCode = _.result(res, 'status') || _.result(reason, 'status');
+      console.log(`<--- Response: ${statusCode} ${url}`);
       reason ? reject(_.extend(reason, {statusCode})) : resolve(res);
     });
   });

@@ -20,7 +20,6 @@ let IndexPage = React.createClass({
   },
 
   componentDidMount() {
-    console.log(this.props.user);
   },
 
   render() {
@@ -33,10 +32,4 @@ let IndexPage = React.createClass({
   }
 })
 
-
-IndexPage = connectToStores(IndexPage, ['UserStore'], context => {
-  return {
-    user: context.getStore('UserStore').getUser()
-  };
-});
 export default IndexPage;

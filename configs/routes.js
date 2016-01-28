@@ -9,7 +9,14 @@ export default {
     method: 'get',
     page: 'home',
     title: 'Index',
-    handler: require('../app/pages/Index.js'),
+    handler: require('../app/views/Index.js'),
+  },
+  user: {
+    path: '/user/',
+    method: 'get',
+    page: 'user',
+    title: 'User',
+    handler: require('../app/views/User.js'),
     action(context, payload, done) {
       Promise.all([
         context.executeAction(UserAction, Immutable.fromJS({

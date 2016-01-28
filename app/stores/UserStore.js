@@ -15,9 +15,10 @@ module.exports = createStore({
   },
 
   setUser(dispatched) {
-    let {user} = dispatched;
+    let user = Immutable.fromJS(dispatched.user);
     if (!Immutable.is(this.user, user)) {
-      this.user = Immutable.Map(user);
+      this.user = user;
+      console.log('UserStore:setUser: %o', user);
       this.emitChange();
     }
   },

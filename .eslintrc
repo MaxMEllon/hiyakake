@@ -20,7 +20,7 @@
     "new-cap": 0,
     "space-in-parens": [2, "never"],
     "no-undef": 2,
-    "no-console": 1,
+    "no-console": 0,
     "no-underscore-dangle": 0,
     "no-process-exit": 0,
     "no-unused-vars": 1,
