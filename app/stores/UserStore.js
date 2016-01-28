@@ -8,10 +8,12 @@ module.exports = createStore({
 
   handlers: {
     SET_USER: 'setUser',
+    SET_REPOS: 'setRepos'
   },
 
   initialize() {
     this.user = null;
+    this.repos = null;
   },
 
   setUser(dispatched) {
@@ -23,8 +25,21 @@ module.exports = createStore({
     }
   },
 
+  setRepos(dispatched) {
+    let repos = Immutable.List(dispatched.repos);
+    if (!Immutable.is(this.repos, repos)) {
+      this.repos = repos;
+      console.log('UserStore:setRepos: %o', repos);
+      this.emitChange();
+    }
+  },
+
   getUser() {
     return this.user;
+  },
+
+  getRepos() {
+    return this.repos;
   },
 
   dehydrate() {

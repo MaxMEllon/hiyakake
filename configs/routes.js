@@ -26,5 +26,21 @@ export default {
         }))
       ]).then(() => done(), done);
     }
+  },
+  repo: {
+    path: '/repo',
+    method: 'get',
+    page: 'repo',
+    title: 'Repos',
+    handler: require('../app/views/Repo.js'),
+    action(context, payload, done) {
+      Promise.all([
+        context.executeAction(UserAction, Immutable.fromJS({
+          type: UserAction.ActionTypes.GetRepos,
+          user_name: 'maxmellon',
+          body: {}
+        }))
+      ]).then(() => done(), done);
+    }
   }
 };
