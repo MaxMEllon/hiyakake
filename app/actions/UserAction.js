@@ -7,18 +7,21 @@ const Request = require('../utils/Request');
 
 let UserAction;
 UserAction = (actionContext, payload) => {
-  switch (payload.get('type')) {
+  let type = payload.get('type');
+  switch (type) {
 
   case UserAction.ActionTypes.GetUser:
     return new Promise((resolve, reject) => {
       let name = payload.get('user_name');
-      console.log(`---> Request: /users/${name} UserAction:GetUser`);
-      Request('get', `/users/${name}`, payload.get('body')).then(res => {
+      let url = `/users/${name}`;
+      console.log(`---> Request: ${url} UserAction:GetUser`);
+      Request('get', `${url}`, payload.get('body')).then(res => {
         let user = _.result(res, 'body');
         console.log('===> UserAction:Dispatch:SET_USER %o', user);
         actionContext.dispatch('SET_USER', {user: user});
       }).then(resolve, reject);
     });
+
   case UserAction.ActionTypes.GetRepos:
     return new Promise((resolve, reject) => {
       let name = payload.get('user_name');
@@ -29,6 +32,11 @@ UserAction = (actionContext, payload) => {
         console.log('===> UserAction:Dispatch:SET_REPOS %o', repos);
         actionContext.dispatch('SET_REPOS', {repos: repos});
       }).then(resolve, reject);
+    });
+
+  default:
+    return new Promise((resolve, reject) => {
+      console.log('==X UserAction');
     });
   }
 };

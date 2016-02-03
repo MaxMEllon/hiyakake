@@ -29,7 +29,6 @@ let RepoPage = React.createClass({
   componentWillUnmount() {
   },
 
-
   render() {
     console.log('+++> render:RepoPage');
     return (

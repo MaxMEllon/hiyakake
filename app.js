@@ -3,8 +3,8 @@
 import Fluxible from 'fluxible';
 import Application from './app/components/Application.js';
 import ApplicationStore from './app/stores/ApplicationStore.js';
-import UserStore from './app/stores/UserStore.js';
-import RouteStore from './app/stores/RouteStore.js';
+import UserStore from './app/stores/UserStore';
+import RouteStore from './app/stores/RouteStore';
 
 // create new fluxible instance
 const app = new Fluxible({

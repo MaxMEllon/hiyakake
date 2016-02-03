@@ -9,14 +9,14 @@ export default {
     method: 'get',
     page: 'home',
     title: 'Index',
-    handler: require('../app/views/Index.js'),
+    handler: require('../app/views/Index'),
   },
   user: {
     path: '/user',
     method: 'get',
     page: 'user',
     title: 'User',
-    handler: require('../app/views/User.js'),
+    handler: require('../app/views/User'),
     action(context, payload, done) {
       Promise.all([
         context.executeAction(UserAction, Immutable.fromJS({
@@ -32,7 +32,7 @@ export default {
     method: 'get',
     page: 'repo',
     title: 'Repos',
-    handler: require('../app/views/Repo.js'),
+    handler: require('../app/views/Repo'),
     action(context, payload, done) {
       Promise.all([
         context.executeAction(UserAction, Immutable.fromJS({

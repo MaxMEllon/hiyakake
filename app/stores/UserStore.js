@@ -20,7 +20,7 @@ module.exports = createStore({
     let user = Immutable.fromJS(dispatched.user);
     if (!Immutable.is(this.user, user)) {
       this.user = user;
-      console.log('UserStore:setUser: %o', user);
+      console.log('<=== UserStore:setUser: %o', user);
       this.emitChange();
     }
   },
@@ -29,7 +29,7 @@ module.exports = createStore({
     let repos = Immutable.List(dispatched.repos);
     if (!Immutable.is(this.repos, repos)) {
       this.repos = repos;
-      console.log('UserStore:setRepos: %o', repos);
+      console.log('<=== UserStore:setRepos: %o', repos);
       this.emitChange();
     }
   },
@@ -44,12 +44,14 @@ module.exports = createStore({
 
   dehydrate() {
     return {
-      users: this.user.toJS()
+      users: this.user,
+      repos: this.repos
     };
   },
 
   rehydrate(dehydrated) {
-    this.setUser(dehydrated);
+    this.setUser(dehydrated.user);
+    this.setRepos(dehydrated.repos);
   }
 
 });

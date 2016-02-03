@@ -3,7 +3,7 @@
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 import { createElementWithContext } from 'fluxible-addons-react';
-import app from '../app.js';
+import app from '../app';
 
 const debugClient = debug('hiyakake');
 const dehydratedState = window.App; // Sent from the server
