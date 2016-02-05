@@ -10,12 +10,19 @@ UserAction = (actionContext, payload) => {
   let type = payload.get('type');
   switch (type) {
 
+  case UserAction.ActionTypes.AccountAuthorize:
+    return new Promise((resolve, reject) => {
+      let url = 'https://github.com/login/oauth/authorize';
+      Request('get', url, payload.get('body')).then(res => {
+      });
+    })
+
   case UserAction.ActionTypes.GetUser:
     return new Promise((resolve, reject) => {
       let name = payload.get('user_name');
       let url = `/users/${name}`;
       console.log(`---> Request: ${url} UserAction:GetUser`);
-      Request('get', `${url}`, payload.get('body')).then(res => {
+      Request('get', url, payload.get('body')).then(res => {
         let user = _.result(res, 'body');
         console.log('===> UserAction:Dispatch:SET_USER %o', user);
         actionContext.dispatch('SET_USER', {user: user});

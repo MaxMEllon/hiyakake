@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Nav from './Nav.js';
+import Nav from './Nav';
 import ApplicationStore from '../stores/ApplicationStore.js';
 import {connectToStores} from 'fluxible-addons-react';
 import pages from '../../configs/routes.js';
