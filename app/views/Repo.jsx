@@ -4,6 +4,7 @@ const _ = require('lodash');
 const React = require('react');
 const Immutable = require('immutable');
 // const ImmutablePropTypes = require('react-immutable-proptypes');
+const debug = require('../utils/Debug')('RepoPage');
 const {connectToStores, provideContext} = require('fluxible-addons-react');
 const UserAction = require('../actions/UserAction.js');
 const List = require('../components/List.js');
@@ -30,7 +31,7 @@ let RepoPage = React.createClass({
   },
 
   render() {
-    console.log('+++> render:RepoPage');
+    debug('render');
     return (
       <div>
         <ul>

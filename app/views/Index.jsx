@@ -4,6 +4,7 @@ const _ = require('lodash');
 const React = require('react');
 const Immutable = require('immutable');
 // const ImmutablePropTypes = require('react-immutable-proptypes');
+const debug = require('../utils/Debug')('IndexPage');
 const {connectToStores} = require('fluxible-addons-react');
 const UserAction = require('../actions/UserAction.js');
 
@@ -23,7 +24,7 @@ let IndexPage = React.createClass({
   },
 
   render() {
-    console.log('+++> render:Index');
+    debug('render');
     return (
       <div>
         <h2>Index</h2>

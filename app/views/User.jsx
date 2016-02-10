@@ -5,6 +5,7 @@ const React = require('react');
 const Immutable = require('immutable');
 // const ImmutablePropTypes = require('react-immutable-proptypes');
 const {connectToStores, provideContext} = require('fluxible-addons-react');
+const debug = require('../utils/Debug')('UserPage');
 const UserAction = require('../actions/UserAction.js');
 
 let UserPage = React.createClass({
@@ -29,6 +30,7 @@ let UserPage = React.createClass({
   },
 
   renderUserInfo() {
+    debug('render');
     return (
       <div>
         <h1>
@@ -48,7 +50,7 @@ let UserPage = React.createClass({
   },
 
   render() {
-    console.log('+++> render:UserPage');
+    debug('render');
     return (
       <div>
         {this.renderUserInfo()}

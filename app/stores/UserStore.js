@@ -1,6 +1,7 @@
 'use strict';
 
 const Immutable = require('immutable');
+const debug = require('../utils/Debug')('UserStore');
 const {createStore} = require('fluxible/addons');
 
 module.exports = createStore({
@@ -20,7 +21,7 @@ module.exports = createStore({
     let user = Immutable.fromJS(dispatched.user);
     if (!Immutable.is(this.user, user)) {
       this.user = user;
-      console.log('<=== UserStore:setUser: %o', user);
+      debug('<=== setUser: %o', user);
       this.emitChange();
     }
   },
@@ -29,7 +30,7 @@ module.exports = createStore({
     let repos = Immutable.List(dispatched.repos);
     if (!Immutable.is(this.repos, repos)) {
       this.repos = repos;
-      console.log('<=== UserStore:setRepos: %o', repos);
+      debug('<=== setRepos: %o', repos);
       this.emitChange();
     }
   },

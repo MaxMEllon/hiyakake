@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const debug = require('debug');
+const debug = require('../utils/Debug')('UserAction');
 const keyMirror = require('fbjs/lib/keyMirror');
 const Request = require('../utils/Request');
 
@@ -10,21 +10,14 @@ UserAction = (actionContext, payload) => {
   let type = payload.get('type');
   switch (type) {
 
-  case UserAction.ActionTypes.AccountAuthorize:
-    return new Promise((resolve, reject) => {
-      let url = 'https://github.com/login/oauth/authorize';
-      Request('get', url, payload.get('body')).then(res => {
-      });
-    })
-
   case UserAction.ActionTypes.GetUser:
     return new Promise((resolve, reject) => {
       let name = payload.get('user_name');
       let url = `/users/${name}`;
-      console.log(`---> Request: ${url} UserAction:GetUser`);
+      debug(`---> Request: ${url}`);
       Request('get', url, payload.get('body')).then(res => {
         let user = _.result(res, 'body');
-        console.log('===> UserAction:Dispatch:SET_USER %o', user);
+        debug('===> Dispatch:SET_USER %o', user);
         actionContext.dispatch('SET_USER', {user: user});
       }).then(resolve, reject);
     });
@@ -33,17 +26,17 @@ UserAction = (actionContext, payload) => {
     return new Promise((resolve, reject) => {
       let name = payload.get('user_name');
       let url = `/users/${name}/repos`;
-      console.log(`---> Request: ${url} UserAction:GetUser`);
+      debug(`---> Request: ${url}`);
       Request('get', url, payload.get('body')).then(res => {
         let repos = _.result(res, 'body');
-        console.log('===> UserAction:Dispatch:SET_REPOS %o', repos);
+        debug('===> Dispatch:SET_REPOS %o', repos);
         actionContext.dispatch('SET_REPOS', {repos: repos});
       }).then(resolve, reject);
     });
 
   default:
     return new Promise((resolve, reject) => {
-      console.log('==X UserAction');
+      debug('==X UnknownActionType');
     });
   }
 };

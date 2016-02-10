@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const debug = require('./Debug')('Request');
 const request = require('superagent');
 
 module.exports = (method, path, body) => {
@@ -15,7 +16,7 @@ module.exports = (method, path, body) => {
     });
     req.end((reason, res) => {
       let statusCode = _.result(res, 'status') || _.result(reason, 'status');
-      console.log(`<--- Response: ${statusCode} ${url}`);
+      debug(`<--- ${statusCode}:${url}`);
       reason ? reject(_.extend(reason, {statusCode})) : resolve(res);
     });
   });
